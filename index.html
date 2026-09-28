@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>오우석 포트폴리오 v0.3 — Editorial, 2026.09</title>
+<link rel="stylesheet" href="_ds/industry-00f58640-f8ed-4eac-bcb6-d5166c27a7f8/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=Barlow:wght@400;500&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<script src="./ds-base.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+/* Deck scaffolding only — every color, rule and font comes from the Industry tokens.
+   Reading-density deck: body 24px ≈ 11pt at 1920×1080 print scale. */
+deck-stage {
+  --t-display: 78px; --t-title: 52px; --t-sub: 29px;
+  --t-body: 24px; --t-small: 21px; --t-note: 18px; --t-kicker: 19px;
+  --px: 96px;
+  counter-reset: page;
+}
+.hd { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 700; }
+.slide {
+  position: relative; display: flex; flex-direction: column; box-sizing: border-box;
+  padding: 70px var(--px) 62px;
+  background: var(--color-bg); color: var(--color-text);
+  font-family: "Noto Sans KR", var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased; word-break: keep-all;
+  font-size: var(--t-body); line-height: 1.6; text-wrap: pretty;
+  counter-increment: page;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.kick { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 600;
+  font-size: var(--t-kicker); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-accent); margin: 0 0 12px; }
+.title { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 700;
+  font-size: var(--t-title); line-height: 1.16; letter-spacing: -0.005em; margin: 0; }
+.pmeta { font-size: var(--t-small); margin: 12px 0 0;
+  color: color-mix(in srgb, var(--color-text) 74%, transparent); }
+.rule { height: 1px; background: var(--color-divider); margin: 24px 0 30px; }
+.body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.lbl { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 600;
+  font-size: var(--t-kicker); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-accent-700); margin: 0 0 12px; }
+p { margin: 0; }
+.small { font-size: var(--t-small); }
+.note { font-size: var(--t-note); }
+.muted { color: color-mix(in srgb, var(--color-text) 74%, transparent); }
+.bl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.bl li { position: relative; padding-left: 26px; }
+.bl li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 13px; height: 1px; background: var(--color-accent); }
+.bl.tight { gap: 9px; }
+.bl.tight li { font-size: var(--t-small); }
+.nums { list-style: none; margin: 0; padding: 0; counter-reset: s; display: flex; flex-direction: column; gap: 16px; }
+.nums li { counter-increment: s; position: relative; padding-left: 52px; font-size: var(--t-small); }
+.nums li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 0.1em;
+  font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 22px;
+  letter-spacing: 0.04em; color: var(--color-accent); font-feature-settings: "tnum" 1; }
+.bp { position: relative; border: 1px solid var(--color-divider); padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 10px; }
+.bp > .corner { position: absolute; width: 13px; height: 13px;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+.bp > .corner::before, .bp > .corner::after { content: ""; position: absolute; background: currentColor; }
+.bp > .corner::before { left: 6px; top: 0; width: 1px; height: 100%; }
+.bp > .corner::after { top: 6px; left: 0; width: 100%; height: 1px; }
+.bp > .corner.tl { top: -7px; left: -7px; } .bp > .corner.tr { top: -7px; right: -7px; }
+.bp > .corner.bl { bottom: -7px; left: -7px; } .bp > .corner.br { bottom: -7px; right: -7px; }
+.bp h3 { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 700;
+  font-size: var(--t-sub); line-height: 1.2; margin: 0; }
+.band { display: flex; flex-wrap: wrap; gap: 9px; }
+.utags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.utags .tag { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 16px;
+  padding: 4px 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.band .tag { font-size: var(--t-note); padding: 5px 11px; letter-spacing: 0.01em; }
+.flow { display: flex; align-items: stretch; gap: 10px; }
+.node { flex: 1; min-width: 0; border: 1px solid var(--color-divider);
+  padding: 13px 12px; font-size: var(--t-note); line-height: 1.35; text-align: center;
+  display: flex; align-items: center; justify-content: center; }
+.node.hi { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
+.node.dim { border-style: dashed; color: color-mix(in srgb, var(--color-text) 62%, transparent); }
+.arw { align-self: center; color: var(--color-accent); font-size: 22px; line-height: 1; flex: none; }
+.slot { position: relative; border: 1px solid var(--color-divider); background: var(--color-surface); }
+.slot image-slot { display: block; width: 100%; height: 100%; }
+.slot > .corner { pointer-events: none; }
+.slotnote { font-size: var(--t-note); line-height: 1.45; margin: 10px 0 0;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent); }
+.foot { position: absolute; left: var(--px); bottom: 30px;
+  font-size: var(--t-note); font-feature-settings: "tnum" 1;
+  color: color-mix(in srgb, var(--color-text) 66%, transparent); }
+.foot::before { content: counter(page) " | 오우석 포트폴리오"; }
+deck-stage[data-flags~="no-furniture"] .foot { display: none; }
+deck-stage[data-flags~="no-slots"] .slot,
+deck-stage[data-flags~="no-slots"] .slotnote { display: none; }
+deck-stage[data-flags~="no-marks"] .corner { display: none; }
+deck-stage[data-flags~="clean-slots"] .slot image-slot::part(empty) { opacity: 0; }
+.slide .table { font-size: var(--t-small); }
+.slide .table th { font-size: var(--t-note); padding: 0 16px 12px 0; letter-spacing: 0.1em; }
+.slide .table td { padding: 15px 16px 15px 0; vertical-align: top; }
+.slide .table td:last-child, .slide .table th:last-child { padding-right: 0; }
+.cover { justify-content: center; }
+.display { font-family: "Barlow Condensed", "Noto Sans KR", sans-serif; font-weight: 700;
+  font-size: var(--t-display); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 1500px; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-deck-active] .rise { animation: rise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+}
+</style>
+<style id="editorial-redesign-v0-3">
+/* v0.3 Editorial redesign — AI-assisted visual direction, content preserved.
+   Warm paper, ink, and restrained teal; remove blueprint framing and let case studies lead. */
+deck-stage {
+  --color-bg: #f7f6f2; --color-surface: #eeede7; --color-text: #202b2d;
+  --color-accent: #17766f; --color-accent-2: #55958d;
+  --color-divider: color-mix(in srgb, #202b2d 18%, transparent);
+  --color-accent-100: #e5f1ed; --color-accent-200: #cce4dd; --color-accent-300: #add3c9;
+  --color-accent-400: #83b8ac; --color-accent-500: #57998f; --color-accent-600: #347f76;
+  --color-accent-700: #286960; --color-accent-800: #20564f; --color-accent-900: #183e3a;
+  --t-display: 82px; --t-title: 48px; --t-sub: 27px; --t-body: 23px;
+  --t-small: 20px; --t-note: 18px; --t-kicker: 16px; --px: 104px;
+}
+.slide {
+  background: var(--color-bg); color: var(--color-text);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; line-height: 1.58;
+}
+.slide:not(.cover) { padding-top: 76px; }
+.kick { font-family: "Barlow", "Noto Sans KR", sans-serif; font-size: var(--t-kicker);
+  font-weight: 700; letter-spacing: .13em; color: var(--color-accent); margin-bottom: 16px; }
+.title { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size: var(--t-title);
+  font-weight: 700; letter-spacing: -.045em; line-height: 1.24; }
+.pmeta { font-size: 19px; color: #667476; }
+.rule { height: 1px; background: var(--color-divider); margin: 26px 0 32px; }
+.lbl { font-family: "Barlow", "Noto Sans KR", sans-serif; font-size: 15px;
+  letter-spacing: .12em; color: var(--color-accent-700); }
+.display { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size: var(--t-display);
+  font-weight: 700; letter-spacing: -.055em; line-height: 1.24; }
+.bp { border: 0; border-left: 3px solid var(--color-accent); background: var(--color-surface); padding: 23px 26px; }
+.bp > .corner, .slot > .corner { display: none !important; }
+.bp h3 { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size: var(--t-sub); letter-spacing: -.035em; }
+.node { border-color: var(--color-divider); background: rgba(255,255,255,.46); }
+.node.hi { background: var(--color-accent); border-color: var(--color-accent); }
+.slot { border-color: var(--color-divider); background: #ebeae4; }
+.tag { border-radius: 2px; }
+.foot { left: var(--px); bottom: 28px; font-family: "Barlow", "Noto Sans KR", sans-serif;
+  font-size: 15px; letter-spacing: .025em; color: #738082; }
+.slide .table { border-collapse: collapse; }
+.slide .table th { color: var(--color-accent-700); font-family: "Barlow", "Noto Sans KR", sans-serif;
+  font-weight: 700; border-bottom: 2px solid var(--color-text); }
+.slide .table td { border-bottom: 1px solid var(--color-divider); }
+.cover { background: #183d3a !important; color: #f7f6f2 !important; }
+.cover .kick { color: #9bd0c5; }
+.cover .muted { color: #c0d0cb; }
+.cover .small { color: #e8efeb; }
+.cover .rise > div { background: rgba(247,246,242,.34) !important; }
+.cover .display { max-width: 1400px; }
+.cover .hd { font-weight: 500; }
+.cover .foot { color: #c0d0cb; }
+@media print {
+  .slide { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .bp { break-inside: avoid; }
+}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" data-flags="{{ flags }}" hint-size="100%,100%" data-uneditable="">
+
+  <section class="slide cover" data-screen-label="01" data-label="표지" data-speaker-notes="증권, 회계, 가상자산, 에듀테크에서 제품 기획부터 운영까지 경험한 개발자. 금융 AI Product / AI Platform 포지션 지향.">
+    <p class="kick" style="position:absolute;top:70px;right:var(--px);margin:0">Portfolio v0.3 · Editorial direction · 2026.09</p>
+    <div class="rise">
+      <h1 class="display">금융 데이터와 AI 서비스를<br>함께 설계하고 운영해 온 개발자</h1>
+      <div style="height:1px;background:var(--color-divider);margin:44px 0 32px;max-width:1500px"></div>
+      <p class="hd" style="font-size:38px;line-height:1.25;margin:0">오우석  Woosuk Oh</p>
+      <p class="small muted" style="margin-top:8px;letter-spacing:0.04em">Full-Stack Engineer, 금융 데이터 플랫폼</p>
+      <p class="small" style="margin-top:26px;max-width:1100px">증권, 회계, 가상자산, 에듀테크 등 여러 분야에서 8년간 제품 기획부터 개발, 배포, 운영까지 경험했습니다.</p>
+    </div>
+    <p class="small muted" style="position:absolute;left:var(--px);bottom:70px;margin:0">010-2992-5586 | gta2v@naver.com | github.com/woosuk-oh</p>
+    <p class="small muted" style="position:absolute;right:var(--px);bottom:70px;margin:0">2026.08</p>
+  </section>
+
+  <section class="slide" data-screen-label="02" data-label="프로필" data-speaker-notes="프론트엔드로 시작해 백엔드, 데이터, 인증, 인프라로 확장. 금융 회계 데이터 플랫폼의 기획부터 고객사 구축과 운영까지 경험.">
+    <p class="kick">Profile</p>
+    <h2 class="title">금융 회계 업무를 이해하고 제품으로 구현하는 개발자</h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p style="max-width:1520px">2018년부터 증권, 회계, 가상자산, 에듀테크 등 여러 분야에서 제품을 개발해 왔습니다. 프론트엔드 개발자로 시작했지만 프로젝트에서 맡는 범위가 넓어지면서 FastAPI와 Spring Boot 기반 백엔드, 데이터 처리, 인증, 배포와 운영까지 직접 다루게 됐습니다. 딜로이트에서는 금융 회계 데이터 플랫폼을 초기 기획 단계부터 맡아 기능 범위와 기술 구조를 정하고, 이후 개발과 고객사 구축, 운영까지 경험했습니다. 회계 감사 문서를 활용한 RAG PoC와 사내 교육도 진행했고, 현재는 증권사에서 디지털감사 시스템을 운영하고 있습니다.</p>
+      <div style="display:grid;grid-template-columns:1fr 480px;gap:56px;margin-top:44px;align-items:start">
+        <div>
+          <p class="lbl">업무 관점</p>
+          <ol class="nums rise">
+            <li>회계사와 실제 업무를 함께 보면서 반복되는 작업과 시간이 많이 드는 지점을 확인하고, 이를 기능으로 구현해왔습니다.</li>
+            <li>화면 개발에만 머무르지 않고 API, DB, 권한, 배포와 설치까지 서비스 운영에 필요한 범위를 함께 맡아왔습니다.</li>
+            <li>금융 회계 데이터를 다룰 때는 정확성을 우선했고, 데이터 정합성과 결과의 근거, 변경에 따른 영향까지 함께 고민해왔습니다.</li>
+            <li>감사 업무에 AI를 적용할 때는 답변의 근거를 가장 먼저 확인했습니다. 출처와 근거를 확인할 수 있어야 실제 업무에 활용할 수 있다고 판단했습니다.</li>
+            <li>반복되는 작업은 가능한 한 자동화하거나 개발 환경을 개선하려고 합니다. 엘리스에서는 월 40시간 이상 걸리던 등록 업무를 약 20분으로 줄였고, 피어테크에서는 패키지 설치 시간을 약 951초에서 30초로 줄였습니다.</li>
+          </ol>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3>기본 정보</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;font-size:var(--t-note);line-height:1.5">
+            <div><span class="muted">경력</span><br>8년차</div>
+            <div><span class="muted">학력</span><br>한국공학대학교 컴퓨터공학 학사</div>
+            <div><span class="muted">자격</span><br>정보처리기사</div>
+            <div><span class="muted">병역</span><br>산업기능요원 복무 후 소집해제 (2019.10~2022.08)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="03" data-label="핵심 역량" data-speaker-notes="기술 나열이 아니라 열 개의 역량 축으로 커리어를 설명한다.">
+    <p class="kick">Capability</p>
+    <h2 class="title">핵심 역량</h2>
+    <p class="pmeta">프로젝트에서 주로 다뤄온 영역</p>
+    <div class="rule"></div>
+    <div class="body rise">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px 26px;align-content:start">
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">제품 기획과 요구사항 정의</h3>
+          <p class="note">제품명과 기능 범위 정의, 화면과 데이터 흐름, 업무 프로세스 설계</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">Frontend</h3>
+          <p class="note">React와 TypeScript 주도, Next.js, Angular, Ionic, Electron</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">Backend</h3>
+          <p class="note">Python과 FastAPI, Java와 Spring Boot 기반 REST API 구현</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">데이터 처리와 DB</h3>
+          <p class="note">수백만 행 파싱과 정합성 검증, 적재, DB Queue, Batch와 ETL</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">AI/RAG 활용</h3>
+          <p class="note">LangChain, Chroma, BM25 Hybrid Search, Citation 기반 RAG PoC와 사내 교육</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">인증과 보안</h3>
+          <p class="note">Entra ID SSO, OTP, RBAC, TLS, SAST와 DAST, IDOR 대응</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">고객사 구축과 운영</h3>
+          <p class="note">고객사별 DB와 네트워크, 보안 정책에 맞춘 설치와 운영 지원</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">금융 감사와 FDS</h3>
+          <p class="note">감사 데이터 분석, 디지털감사 운영, FDS 고도화 협의</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">PM과 팀 리딩</h3>
+          <p class="note">제품 PM, Frontend Team Lead, 외주사와 벤더, 보안 조직 협업</p>
+        </div>
+        <div class="bp" style="padding:20px 20px 22px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3 style="font-size:25px">업무 자동화와 개발환경 개선</h3>
+          <p class="note">반복 업무 자동화, 빌드와 설치 시간 단축, 인프라 비용 절감</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="04" data-label="커리어 타임라인" data-speaker-notes="프론트엔드에서 시작해 풀스택, 금융 데이터 플랫폼, AI 제품과 금융 IT로 이동한 궤적.">
+    <p class="kick">Career Timeline</p>
+    <h2 class="title">커리어 타임라인</h2>
+    <div class="rule"></div>
+    <div class="body">
+      <table class="table rise">
+        <thead>
+          <tr><th style="width:280px">기간</th><th style="width:250px">회사</th><th style="width:340px">직급과 역할</th><th>한 줄 설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="muted">2026.03~재직 중</td><td>현대차증권</td><td>G2 / BT</td><td>디지털감사 운영, FDS 고도화, 차세대 전환 영향도 분석</td></tr>
+          <tr><td class="muted">2023.07~2026.03</td><td>딜로이트안진</td><td>Senior Consultant<br>AI Assets &amp; Analytics</td><td>FinanceDataHub, RAG PoC와 교육, RightHouse</td></tr>
+          <tr><td class="muted">2023.03~2023.07</td><td>피어테크</td><td>Frontend Team Lead</td><td>GDAC 가상자산 거래 플랫폼, 팀 리딩</td></tr>
+          <tr><td class="muted">2020.11~2022.09</td><td>엘리스그룹</td><td>Software Engineer</td><td>K-Digital Training LMS와 LXP, 인증과 운영 자동화</td></tr>
+          <tr><td class="muted">2019.05~2020.10</td><td>테이블매니저</td><td>매니저 / Frontend Developer</td><td>예약 관리 서비스, Analytics Dashboard</td></tr>
+          <tr><td class="muted">2018.08~2019.03</td><td>에피케이터</td><td>Assistant / Tech Lead 역할</td><td>통합 백오피스 재개발과 AWS, Jenkins 운영</td></tr>
+          <tr><td class="muted">2018.03~2018.07</td><td>신텍정보시스템</td><td>프리랜서 / 개발자</td><td>현대자동차 해외 딜러용 시승 관리 앱</td></tr>
+        </tbody>
+      </table>
+      <div class="bp" style="margin-top:auto;padding:20px 26px;flex-direction:row;align-items:center;justify-content:center">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <p class="hd" style="font-size:28px;letter-spacing:0.02em">프론트엔드에서 시작해 제품 전체와 데이터, 금융 시스템까지 업무 범위를 넓혀왔습니다.</p>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="05" data-label="기술 역량 ①" data-speaker-notes="실제 프로젝트에서 사용한 경험을 중심으로 정리. 기술 선정부터 설계, 구현, 배포와 운영까지 다룬 범위를 구분.">
+    <p class="kick">Tech Stack ①</p>
+    <h2 class="title">기술 역량 ① 제품 개발과 플랫폼</h2>
+    <p class="pmeta">실제 프로젝트에서 사용한 경험을 중심으로 정리했습니다.</p>
+    <div class="rule"></div>
+    <div class="body rise" style="gap:26px">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">주력 기술</p>
+          <p class="note muted" style="margin-top:6px">기술 선정부터 설계, 구현, 배포와 운영까지 가장 깊게 다룬 영역</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-accent">React</span><span class="tag tag-accent">TypeScript</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">Frontend</p>
+          <p class="note muted" style="margin-top:6px">웹과 데스크톱, 모바일 화면 구현</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">Next.js</span><span class="tag tag-neutral">Angular</span><span class="tag tag-neutral">Ionic</span><span class="tag tag-neutral">Electron</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">Backend와 Batch</p>
+          <p class="note muted" style="margin-top:6px">Python과 Java 두 계열을 모두 사용</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">Python</span><span class="tag tag-neutral">FastAPI</span><span class="tag tag-neutral">SQLAlchemy</span><span class="tag tag-neutral">Alembic</span><span class="tag tag-neutral">Pandas</span><span class="tag tag-neutral">Java</span><span class="tag tag-neutral">Spring Boot</span><span class="tag tag-neutral">MyBatis</span><span class="tag tag-neutral">Spring Batch</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">데이터 처리</p>
+          <p class="note muted" style="margin-top:6px">수백만 행 적재와 검증, 대시보드 제작</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">MSSQL</span><span class="tag tag-neutral">MySQL</span><span class="tag tag-neutral">Oracle</span><span class="tag tag-neutral">Tibero</span><span class="tag tag-neutral">SQL</span><span class="tag tag-neutral">ETL</span><span class="tag tag-neutral">Batch</span><span class="tag tag-neutral">DB Queue</span><span class="tag tag-neutral">Tableau</span><span class="tag tag-neutral">Tableau Server</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">배포와 운영</p>
+          <p class="note muted" style="margin-top:6px">클라우드와 사내 서버 환경 모두 대응</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">AWS EC2, S3</span><span class="tag tag-neutral">Nginx</span><span class="tag tag-neutral">Windows Server</span><span class="tag tag-neutral">IIS</span><span class="tag tag-neutral">GitHub Actions</span><span class="tag tag-neutral">GitLab CI/CD</span><span class="tag tag-neutral">Jenkins</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="06" data-label="기술 역량 ② AI와 데이터, 보안" data-speaker-notes="PoC와 교육에서 직접 구현한 항목, 평가와 검색 품질 개선 관점에서 검토한 항목을 구분해 정리.">
+    <p class="kick">Tech Stack ②</p>
+    <h2 class="title">기술 역량 ② AI와 데이터, 보안</h2>
+    <p class="pmeta">감사 문서 RAG PoC와 금융 데이터 플랫폼에서 다뤄본 기술</p>
+    <div class="rule"></div>
+    <div class="body rise" style="gap:26px">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">인증과 권한</p>
+          <p class="note muted" style="margin-top:6px">사내 사용자와 외부 사용자를 위한 인증 및 권한 체계 구현</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">Microsoft Entra ID</span><span class="tag tag-neutral">OAuth/OIDC</span><span class="tag tag-neutral">OTP</span><span class="tag tag-neutral">RBAC</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">보안 대응</p>
+          <p class="note muted" style="margin-top:6px">보안 진단과 모의해킹 결과를 직접 재현하고 원인을 확인해 수정</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-neutral">TLS</span><span class="tag tag-neutral">CORS</span><span class="tag tag-neutral">SAST, DAST</span><span class="tag tag-neutral">IDOR 대응</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">PoC 및 교육 구현</p>
+          <p class="note muted" style="margin-top:6px">PoC 및 사내 교육에서 직접 구현하고 시연</p>
+        </div>
+        <div class="band">
+          <span class="tag tag-outline">LangChain</span><span class="tag tag-outline">LLM API</span><span class="tag tag-outline">RAG</span><span class="tag tag-outline">PDF 파싱, 청킹, 임베딩</span><span class="tag tag-outline">Chroma</span><span class="tag tag-outline">BM25 Hybrid Search</span><span class="tag tag-outline">Citation</span><span class="tag tag-outline">Benford's Law</span><span class="tag tag-outline">Jaccard 유사도 분석</span>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--color-divider)"></div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start">
+        <div>
+          <p class="lbl" style="margin:0">RAG 평가와 확장 기법</p>
+          <p class="note muted" style="margin-top:6px">교육 준비와 데모 코드를 바탕으로 실제 업무에서의 적용 가능성과 활용 방향을 검토</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:baseline"><span class="note muted">평가 지표</span><div class="band"><span class="tag tag-outline" style="border-style:dashed">RAGAS (Faithfulness, Answer Relevancy, Context Precision)</span></div></div>
+          <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:baseline"><span class="note muted">검색 품질 개선</span><div class="band"><span class="tag tag-outline" style="border-style:dashed">Parent Document</span><span class="tag tag-outline" style="border-style:dashed">HyDE</span><span class="tag tag-outline" style="border-style:dashed">Reranking</span></div></div>
+          <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:baseline"><span class="note muted">RAG 확장 방식</span><div class="band"><span class="tag tag-outline" style="border-style:dashed">GraphRAG</span><span class="tag tag-outline" style="border-style:dashed">Multi-modal RAG</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="07" data-label="FinanceDataHub ① 개요" data-speaker-notes="제품명과 기능 범위, 기술 스택, 화면과 데이터 흐름을 정의. 초기 버전은 외주사가 구축했고 이후 개발, 개선, 보안 검토, 고객사 구축과 운영을 담당.">
+    <p class="kick">FinanceDataHub ① 제품 개요</p>
+    <h2 class="title">FinanceDataHub, 재무회계 데이터 분석 플랫폼</h2>
+    <p class="pmeta">딜로이트안진 | 2023.07~2026.03 | 제품 기획, PM, Full-Stack Developer, 고객사 구축과 운영</p>
+    <div class="utags"><span class="tag tag-accent">Full-Stack</span><span class="tag tag-accent">Data Platform</span><span class="tag tag-accent">Technical PM</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 780px;gap:52px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div>
+          <p class="lbl">문제</p>
+          <p class="small">회계사와 감사 실무자는 Excel과 여러 외부 조회 사이트를 오가며 데이터를 수집하고 검증하는 작업을 반복하고 있었습니다. 초기 버전이 만들어진 뒤에도 실제 업무 요구와 고객사 운영 환경에 맞춘 개선이 계속 필요했고, 대용량 처리 중 작업 중단이나 고객사별 보안 환경 차이도 함께 해결해야 했습니다.</p>
+        </div>
+        <div>
+          <p class="lbl">프로젝트에서 맡은 역할</p>
+          <div class="flow" style="flex-direction:column;gap:8px">
+            <div class="node hi" style="text-align:left;justify-content:flex-start">초기 기획: 제품명, 요구사항, 기능 범위, 기술 스택과 데이터 흐름 정의</div>
+            <div class="node dim" style="text-align:left;justify-content:flex-start">초기 개발: 외주사에서 첫 번째 버전 구현</div>
+            <div class="node hi" style="text-align:left;justify-content:flex-start">이후 개발: 신규 기능 개발, 기존 기능 개선, 화면 재설계, 인증과 보안, 고객사 구축과 운영 안정화 담당</div>
+          </div>
+        </div>
+        <div>
+          <p class="lbl">제공 기능</p>
+          <ul class="bl tight">
+            <li>비정형 재무 Excel 업로드, 컬럼 검증, 데이터 정합성 확인과 클렌징</li>
+            <li>총계정원장, 시산표, 계정 매핑 검증 분석</li>
+            <li>계좌주조회, 휴폐업조회, 사채와 특수관계자조회, 법인 등기, 수출입 등 외부 데이터 조회</li>
+            <li>프로젝트별 사용자 초대, 역할과 권한, 사용량 추적</li>
+            <li>기업 공시정보를 수집하고 요약하는 생성형 AI 기능</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="slot rise" style="height:230px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <image-slot id="IMAGE-FDH-01" shape="rect" placeholder="메인과 프로젝트 화면"></image-slot>
+        </div>
+        <p class="slotnote">외부정보 조회와 데이터 분석 기능군</p>
+        <p class="lbl" style="margin-top:26px">결과</p>
+        <ul class="bl tight">
+          <li>여러 사이트와 Excel을 오가며 처리하던 조회, 검증, 분석 업무를 하나의 서비스에서 수행할 수 있도록 구성</li>
+          <li>고객사별 보안과 인프라 환경에 맞춘 설치와 운영</li>
+          <li>웹 서비스를 클라우드 환경으로 전환하고 Electron 데스크톱 앱 전환을 외주사와 공동 수행</li>
+          <li>대용량 작업과 장시간 분석으로 발생하던 처리 지연과 작업 중단 문제 개선</li>
+          <li>사용자 가이드, 운영 문서와 사업화 자료 작성</li>
+        </ul>
+        <div class="band" style="margin-top:18px">
+          <span class="tag tag-neutral">Next.js</span><span class="tag tag-neutral">React</span><span class="tag tag-neutral">TypeScript</span><span class="tag tag-neutral">Python</span><span class="tag tag-neutral">FastAPI</span><span class="tag tag-neutral">SQLAlchemy</span><span class="tag tag-neutral">Alembic</span><span class="tag tag-neutral">Pandas</span><span class="tag tag-neutral">MSSQL</span><span class="tag tag-neutral">MySQL</span><span class="tag tag-neutral">Microsoft Entra ID</span><span class="tag tag-neutral">GitHub Actions</span><span class="tag tag-neutral">Electron</span><span class="tag tag-neutral">AWS</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="08" data-label="FinanceDataHub ② 아키텍처" data-speaker-notes="Next.js 화면, FastAPI REST API와 관계형 DB 연동 구조를 설계하고 구현. 사내 구축형에서 클라우드로 전환.">
+    <p class="kick">FinanceDataHub ②</p>
+    <h2 class="title">데이터 처리 구조와 성능 개선</h2>
+    <div class="utags"><span class="tag tag-accent">Data Platform</span><span class="tag tag-accent">Full-Stack</span></div>
+    <div class="rule"></div>
+    <div class="body" style="gap:24px">
+      <p class="small" style="max-width:1700px">Next.js 화면, FastAPI REST API와 관계형 DB 연동 구조를 설계하고 구현했으며, 사내 구축형 웹 서비스를 클라우드 환경으로 전환했습니다. 초기 AWS 환경은 외부 벤더가 구성했고, 이후 EC2와 S3, 보안그룹, Nginx Reverse Proxy, 인증서 설정을 확인하며 운영 이슈와 개선 작업을 담당했습니다.</p>
+      <div class="rise">
+        <p class="lbl">배포 유형별 구성</p>
+        <div style="display:grid;grid-template-columns:96px 1fr;gap:14px 18px;align-items:center">
+          <span class="note muted">웹 배포</span>
+          <div class="flow">
+            <div class="node">Browser</div><span class="arw">→</span>
+            <div class="node">Nginx Reverse Proxy</div><span class="arw">→</span>
+            <div class="node">Next.js 화면<br>FastAPI REST API</div><span class="arw">→</span>
+            <div class="node">Python Core<br>DB Queue</div><span class="arw">→</span>
+            <div class="node">관계형 DB, S3</div>
+          </div>
+          <span class="note muted">Electron</span>
+          <div class="flow">
+            <div class="node">Electron 데스크톱</div><span class="arw">→</span>
+            <div class="node">Python Process 연계</div><span class="arw">→</span>
+            <div class="node">공통 API Interface</div>
+            <div style="flex:2"></div>
+          </div>
+          <span class="note muted">연계</span>
+          <div class="flow">
+            <div class="node dim">Microsoft Entra ID SSO, OTP</div>
+            <div class="node dim">외부 조회 API</div>
+            <div style="flex:2"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;align-items:start">
+        <div class="bp" style="padding:16px 20px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">사례 1</p>
+          <h3>대용량 Excel 동시 처리</h3>
+          <div class="note" style="display:flex;flex-direction:column;gap:8px;line-height:1.5">
+            <div>대용량 Excel을 동시에 처리하면 서버 리소스 한계로 작업이 중단되고 있었습니다.</div>
+            <div><span class="muted">→</span> 처리 요청을 DB Queue에 적재하고 순차적으로 실행하도록 바꿔, 동시에 여러 작업이 들어올 때 발생하던 중단 문제를 줄였습니다.</div>
+          </div>
+        </div>
+        <div class="bp" style="padding:16px 20px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">사례 2</p>
+          <h3>Python 분석과 API 응답 지연</h3>
+          <div class="note" style="display:flex;flex-direction:column;gap:8px;line-height:1.5">
+            <div>장시간 실행되는 Python 분석이 CPU를 점유해 다른 API 호출이 밀렸습니다.</div>
+            <div><span class="muted">→</span> 장시간 분석 작업을 Thread Pool로 분리해 다른 API 요청이 함께 지연되는 문제를 줄였습니다.</div>
+          </div>
+        </div>
+        <div>
+          <p class="lbl" style="margin-top:0">DB Queue 도입 전후</p>
+          <div class="note" style="display:flex;flex-direction:column;gap:10px">
+            <div class="flow" style="flex-direction:column;gap:6px"><div class="node dim">요청 즉시 처리 → 동시 작업 증가 시 작업 중단</div><div class="node hi">DB Queue 적재 → 작업 순서를 제어해 안정적으로 처리</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="09" data-label="FinanceDataHub ③ 인증과 보안" data-speaker-notes="Entra ID 기반 SSO와 OTP, 취약점 재현 절차 수립, 고객사별 배포 구조 조정. Electron 전환은 외주사와 공동으로 진행했으며 패키징과 자동 업데이트는 외주사 담당.">
+    <p class="kick">FinanceDataHub ③</p>
+    <h2 class="title">인증과 보안, 고객사 배포, 그리고 Electron 전환</h2>
+    <div class="utags"><span class="tag tag-accent">Security &amp; Ops</span><span class="tag tag-accent">Full-Stack</span></div>
+    <div class="rule"></div>
+    <div class="body" style="gap:30px">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px">
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3>인증과 권한</h3>
+          <ul class="bl tight">
+            <li>Microsoft Entra ID 기반 OAuth/OIDC SSO와 내부 사용자, 외부 사용자 권한 체계 구현</li>
+            <li>OTP 추가 인증 연동</li>
+            <li>프로젝트별 사용자 초대, 역할 기반 권한과 사용량 추적 기능 개발</li>
+          </ul>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3>보안 대응</h3>
+          <ul class="bl tight">
+            <li>TLS 적용, CORS 관리</li>
+            <li>SAST와 DAST, 모의해킹 결과 대응</li>
+            <li>인증 없이 호출 가능한 API와 IDOR 취약점을 직접 재현하고, 서버 응답과 로그를 확인해 원인을 파악한 뒤 수정</li>
+          </ul>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h3>배포와 운영</h3>
+          <ul class="bl tight">
+            <li>GitHub Actions 기반 CI/CD를 구성하고 개발 환경과 운영 환경을 분리했으며, Git Tag와 Release를 이용한 배포 및 롤백 절차를 정리</li>
+            <li>Windows Server, IIS Reverse Proxy, NSSM, Nginx 환경의 설치와 배포, 운영 이슈 대응</li>
+            <li>고객사별 DB, 네트워크, 보안 정책에 맞춰 배포 구조를 조정하고 설치와 운영 지원</li>
+          </ul>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">Electron 전환 담당 범위</p>
+          <ul class="bl tight">
+            <li>Electron 기술 스택 선정</li>
+            <li>Python 코어 프로세스 실행과 연계</li>
+            <li>공통 API 호출 인터페이스 구현</li>
+            <li>외주 산출물의 기능과 보안 검토, 통합 테스트</li>
+          </ul>
+          <div style="height:1px;background:var(--color-divider);margin:6px 0 2px"></div>
+          <p class="lbl" style="margin:0">외주사 담당 범위</p>
+          <p class="note muted">패키징, 설치파일, 자동 업데이트, 배포 자동화</p>
+        </div>
+      </div>
+      <div style="margin-top:auto">
+        <div class="flow">
+          <div class="node">사용자</div>
+          <span class="arw">→</span>
+          <div class="node">Entra ID SSO<br>(OAuth/OIDC)</div>
+          <span class="arw">→</span>
+          <div class="node">OTP 추가 인증</div>
+          <span class="arw">→</span>
+          <div class="node">프로젝트별 RBAC</div>
+          <span class="arw">→</span>
+          <div class="node hi">기능 접근과 사용량 기록</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="10" data-label="RAG PoC" data-speaker-notes="답변과 함께 근거 문서와 출처를 제공하는 구조를 구현. RAGAS 평가 관점과 검색 품질 개선 및 RAG 확장 방향을 검토.">
+    <p class="kick">RAG PoC</p>
+    <h2 class="title">회계 감사 문서를 활용한 RAG PoC</h2>
+    <p class="pmeta">딜로이트안진 | 2025 | RAG PoC 구현</p>
+    <div class="utags"><span class="tag tag-accent">AI Product</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 620px;gap:52px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div>
+          <p class="lbl">문제</p>
+          <p class="small">생성형 AI를 회계 감사 업무에 활용하려는 수요가 늘고 있었지만, 감사 업무에서는 답변 내용만큼 근거를 확인할 수 있는지가 중요했습니다. 답변이 그럴듯하더라도 어떤 문서를 근거로 했는지 확인할 수 없으면 실제 업무에 활용하기 어렵기 때문에, 답변과 함께 근거 문서와 출처를 제공하는 구조를 먼저 검토했습니다.</p>
+        </div>
+        <div>
+          <p class="lbl">구현</p>
+          <ul class="bl tight">
+            <li>회계 감사 PDF를 파싱하고 청킹, 임베딩한 뒤 검색된 근거와 출처를 답변에 함께 반환하는 LangChain 기반 RAG 흐름 구현</li>
+            <li>Chroma Vector Search와 BM25를 결합한 Hybrid Search 구성</li>
+            <li>PDF 질의응답 예제를 구성하고 답변에 출처를 함께 표시하도록 구현 및 시연</li>
+          </ul>
+        </div>
+        <div>
+          <p class="lbl">파이프라인</p>
+          <div class="flow" style="flex-wrap:wrap;row-gap:10px">
+            <div class="node">회계 감사 PDF</div><span class="arw">→</span>
+            <div class="node">파싱, 청킹, 임베딩</div><span class="arw">→</span>
+            <div class="node">Hybrid Search<br>Chroma Vector + BM25</div><span class="arw">→</span>
+            <div class="node">LLM 생성</div><span class="arw">→</span>
+            <div class="node hi">답변과 근거, 출처 반환</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div>
+          <p class="lbl">질의응답 Citation 예시 목업</p>
+          <div class="bp" style="gap:14px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div class="note" style="line-height:1.55"><span class="muted">질의</span><br>해당 계약의 수익 인식 시점 기준은 무엇인가</div>
+            <div style="height:1px;background:var(--color-divider)"></div>
+            <div class="note" style="line-height:1.55"><span class="muted">답변</span><br>검색 결과를 기반으로 답변을 생성하고, 답변마다 참고 문서와 페이지를 함께 표시하도록 구성해 생성 결과의 근거를 추적할 수 있도록 했습니다.</div>
+            <div style="height:1px;background:var(--color-divider)"></div>
+            <div class="note" style="line-height:1.55"><span class="muted">근거와 출처</span><br>가상문서_회계처리지침_A.pdf, p.12<br>가상문서_감사조서_샘플_B.pdf, p.4</div>
+          </div>
+        </div>
+        <div class="bp" style="border-style:dashed">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">평가 및 확장 검토</p>
+          <p class="note" style="line-height:1.55">RAGAS의 Faithfulness, Answer Relevancy, Context Precision을 평가 관점에서 검토했고, Parent Document, HyDE, Reranking 예제를 통해 검색 품질 개선 방향을 확인했습니다. GraphRAG와 Multi-modal RAG는 회계 감사 업무에서 활용할 수 있는 확장 방향을 검토했습니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="11" data-label="통제 원칙과 사내 교육" data-speaker-notes="감사 업무에 적용할 때 고려한 네 가지 기준. 사내 AI 전문가 양성 교육 2일차 RAG 파트 강의 진행.">
+    <p class="kick">RAG 적용 기준</p>
+    <h2 class="title">감사 업무 적용 시 고려한 기준</h2>
+    <div class="utags"><span class="tag tag-accent">AI Product</span><span class="tag tag-accent">Audit &amp; FDS</span><span class="tag tag-accent">Leadership</span></div>
+    <div class="rule"></div>
+    <div class="body" style="gap:34px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px">
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">01</p>
+          <h3>답변에 출처 표시</h3>
+          <p class="note">답변마다 참고 문서와 페이지를 함께 제공</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">02</p>
+          <h3>근거 부재 시 답변 제한</h3>
+          <p class="note">검색된 근거가 충분하지 않으면 답변 생성을 제한</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">03</p>
+          <h3>최종 판단은 감사인이 수행</h3>
+          <p class="note">AI는 근거 검색과 답변 지원 역할로 한정하고 최종 판단은 감사인이 수행</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">04</p>
+          <h3>질의와 답변 기록</h3>
+          <p class="note">질의, 답변과 참조한 문서 버전을 기록해 이후에도 확인할 수 있도록 구성</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 640px;gap:52px;align-items:start;margin-top:8px">
+        <div>
+          <p class="lbl">근거 유무에 따른 분기</p>
+          <div class="flow">
+            <div class="node">질의</div><span class="arw">→</span><div class="node">검색</div>
+            <span class="arw">→</span>
+            <div style="flex:1.6;display:flex;flex-direction:column;gap:10px">
+              <div class="node hi">근거 있음 → 답변 + Citation</div>
+              <div class="node dim">근거 없음 → 답변 제한</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="lbl">사내 교육</p>
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h3>사내 AI 전문가 양성 교육 RAG 파트 강의</h3>
+            <ul class="bl tight">
+              <li>3일 과정 중 2일차 RAG 파트 약 4시간 강의 진행</li>
+              <li>2025.12.30, 내부 회계사 약 50명 대상</li>
+              <li>검색 구조와 주요 실패 유형, 실제 업무에서 확인해야 할 답변 근거와 활용 기준을 비개발 직군에 설명</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="12" data-label="RightHouse ①" data-speaker-notes="수백만 행 규모 데이터의 적재와 검증, 회계사와 실데이터를 함께 검토하며 분석 로직을 수정한 과정이 핵심.">
+    <p class="kick">RightHouse ① 문제와 구현</p>
+    <h2 class="title">RightHouse — 자금사고 탐지 및 재무 분석 솔루션</h2>
+    <p class="pmeta">딜로이트안진 | 2023.08~2026.03 | 풀스택 개발, 고객사 구축과 운영</p>
+    <div class="utags"><span class="tag tag-accent">Data Platform</span><span class="tag tag-accent">Audit &amp; FDS</span><span class="tag tag-accent">Full-Stack</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div>
+          <p class="lbl">문제</p>
+          <p class="small">법인카드, 총계정원장, 은행거래내역을 수작업으로 대조해 자금사고 징후를 확인하고 있었습니다. 데이터가 수백만 행 규모여서 적재와 검증에 시간이 많이 들었고, 분석 로직이 실제 회계 판단과 맞지 않으면 오탐이 늘어날 수 있어 회계사와 함께 기준을 조정해야 했습니다.</p>
+        </div>
+        <div>
+          <p class="lbl">데이터 흐름</p>
+          <div class="flow" style="flex-direction:column;gap:6px">
+            <div class="node">법인카드, 총계정원장, 은행거래내역, 거래처 마스터</div>
+            <span class="arw" style="align-self:center">↓</span>
+            <div class="node">Java 적재 API와 Spring Batch</div>
+            <span class="arw" style="align-self:center">↓</span>
+            <div class="node">MySQL</div>
+            <span class="arw" style="align-self:center">↓</span>
+            <div class="node">Python과 Pandas 분석</div>
+            <span class="arw" style="align-self:center">↓</span>
+            <div class="node hi">Tableau Dashboard</div>
+            <div class="node dim" style="margin-top:4px">외부 API 연계 (NICE D&amp;B, 국세청)와 호출 이력 관리, 캐싱</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="lbl">구현</p>
+        <ul class="bl tight">
+          <li>수백만 행 규모 총계정원장 파싱과 정합성 검증, DB 적재 API 및 배치 모듈 개발</li>
+          <li>Java로 적재한 데이터와 Python, Pandas 분석 모듈 연계</li>
+          <li>Benford's Law 기반 이상거래 분석, Jaccard 계수 기반 중복 거래처 식별, 법인카드와 접대비 분석, 공휴일 여부와 업종 분류 로직 적용</li>
+          <li>회계사와 실제 데이터를 함께 검토하면서 오탐이 발생하는 조건을 확인하고, 실무 판단에 맞게 분석 기준을 수정</li>
+          <li>DB에서 확인하기 어려운 정보를 NICE D&amp;B와 국세청 등 외부 API로 보완하고, 호출 이력 관리와 캐싱을 적용</li>
+          <li>Tableau 대시보드 개발과 서버 설치, 애플리케이션 로그인 티켓을 이용한 자동 로그인 인증 흐름 구성</li>
+        </ul>
+        <div class="band" style="margin-top:28px">
+          <span class="tag tag-neutral">React</span><span class="tag tag-neutral">Java</span><span class="tag tag-neutral">Spring Boot</span><span class="tag tag-neutral">MyBatis</span><span class="tag tag-neutral">Spring Batch</span><span class="tag tag-neutral">MySQL</span><span class="tag tag-neutral">Python</span><span class="tag tag-neutral">Pandas</span><span class="tag tag-neutral">Tableau</span><span class="tag tag-neutral">Tableau Server</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="13" data-label="RightHouse ②" data-speaker-notes="주요 탐지 로직과 고객사 운영 결과.">
+    <p class="kick">RightHouse ② 탐지 로직과 결과</p>
+    <h2 class="title">탐지 로직과 고객사 운영</h2>
+    <div class="rule"></div>
+    <div class="body" style="gap:36px">
+      <div>
+        <p class="lbl">주요 탐지 로직</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px">
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h3>Benford's Law</h3>
+            <p class="note">이상거래 분석에 적용</p>
+          </div>
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h3>Jaccard 중복 거래처</h3>
+            <p class="note">Jaccard 계수 기반 중복 거래처 식별</p>
+          </div>
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h3>법인카드와 접대비, 공휴일 룰</h3>
+            <p class="note">법인카드와 접대비 분석, 공휴일 여부와 업종 분류 로직</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start">
+        <div>
+          <p class="lbl">결과</p>
+          <ul class="bl">
+            <li>기존에 수작업으로 확인하던 거래 데이터를 분석 로직으로 1차 선별해, 회계사가 확인해야 할 대상을 줄일 수 있도록 구현</li>
+            <li>분석 결과를 Tableau 대시보드로 제공해 회계사가 이상거래 후보와 관련 데이터를 직접 확인할 수 있도록 구성</li>
+            <li>외국계 반도체 기업과 코스닥 상장사 등 고객사 설치 및 운영 이슈 분석 지원</li>
+          </ul>
+          <div class="bp" style="align-items:flex-start;margin-top:26px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <p class="lbl" style="margin:0">성과</p>
+            <p class="hd" style="font-size:56px;line-height:1;color:var(--color-accent-700);font-feature-settings:'tnum' 1">약 30%</p>
+            <p class="small">동일 데이터의 반복 호출을 줄이기 위해 호출 이력 관리와 캐싱을 적용해 외부 API 비용 약 30% 절감</p>
+          </div>
+        </div>
+        <div>
+          <p class="lbl">분석 결과 화면</p>
+          <div class="slot" style="height:330px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <image-slot id="IMAGE-RH-01" shape="rect" placeholder="분석 결과 화면"></image-slot>
+          </div>
+          <p class="slotnote">거래처 분석과 Tableau 결과 화면</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="14" data-label="Business Report Converter" data-speaker-notes="분산된 문서 작성과 검토를 하나의 웹 협업 흐름으로 전환. 정량 수치는 확인되지 않아 기재하지 않음.">
+    <p class="kick">Business Report Converter</p>
+    <h2 class="title">Business Report Converter, 전자공시 문서 협업 자동화</h2>
+    <p class="pmeta">딜로이트안진 | 2024.07~2024.11 | PM, 풀스택 개발</p>
+    <div class="utags"><span class="tag tag-accent">Technical PM</span><span class="tag tag-accent">Automation</span><span class="tag tag-accent">Full-Stack</span></div>
+    <div class="rule"></div>
+    <div class="body" style="gap:34px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start">
+        <div>
+          <p class="lbl">문제</p>
+          <p class="small">전자공시 문서를 작성하고 취합하는 과정이 메일과 파일로 분산되어 있어 담당자별 진행 상태와 검토 버전을 추적하기 어려웠습니다.</p>
+          <p class="lbl" style="margin-top:28px">결과</p>
+          <ul class="bl tight">
+            <li>메일과 개별 파일로 나뉘어 있던 문서 작성과 검토 과정을 하나의 웹 서비스에서 처리할 수 있도록 구성</li>
+            <li>담당자별 작업 상태와 문서 버전, 리뷰 이력을 시스템에서 확인할 수 있도록 구현</li>
+          </ul>
+        </div>
+        <div>
+          <p class="lbl">역할과 구현</p>
+          <p class="small">사업보고서 작성 과정을 분석해 담당자 할당부터 파일 작성과 통합, 리뷰, 알림, 버전 관리까지 하나의 업무 흐름으로 설계했습니다. DSD, HTML, Excel 간 변환 기능을 포함해 개발과 배포까지 담당했습니다.</p>
+          <ul class="bl tight" style="margin-top:20px">
+            <li>사용자 유형별 작성과 검토 업무 흐름 설계</li>
+            <li>기획부터 개발, 배포, 유지보수까지 담당</li>
+            <li>SSL 적용과 모의해킹 결과 등 보안 요구사항 대응</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p class="lbl">업무 흐름 개선</p>
+        <div class="flow" style="margin-bottom:12px">
+          <div class="node dim">메일</div><span class="arw">+</span><div class="node dim">개별 파일</div><span class="arw">+</span><div class="node dim">수기 취합</div><span class="arw">+</span><div class="node dim">버전 불명확</div>
+        </div>
+        <div class="flow">
+          <div class="node">담당자 자동 할당</div><span class="arw">→</span>
+          <div class="node">작성</div><span class="arw">→</span>
+          <div class="node">업로드와 통합</div><span class="arw">→</span>
+          <div class="node">리뷰와 댓글</div><span class="arw">→</span>
+          <div class="node">버전 비교</div><span class="arw">→</span>
+          <div class="node hi">변환</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 620px;gap:52px;align-items:start">
+        <div>
+          <p class="lbl">양방향 변환 구조</p>
+          <div class="flow" style="max-width:760px">
+            <div class="node">DSD</div><span class="arw">↔</span><div class="node">HTML</div><span class="arw">↔</span><div class="node">Excel</div>
+          </div>
+        </div>
+        <div>
+          <div class="slot" style="height:180px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <image-slot id="IMAGE-BRC-01" shape="rect" placeholder="리뷰와 버전 비교 화면"></image-slot>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="15" data-label="현대차증권" data-speaker-notes="재직 기간이 짧으므로 성과가 아니라 수행 업무 범위를 설명한다. 실화면 캡처 불가.">
+    <p class="kick">현대차증권 금융 IT</p>
+    <h2 class="title">디지털감사 시스템 운영과 FDS 고도화 지원</h2>
+    <p class="pmeta">현대차증권 | G2 / BT | 2026.03~재직 중 | 금융 IT 시스템 운영과 영향도 분석</p>
+    <div class="utags"><span class="tag tag-accent">Audit &amp; FDS</span><span class="tag tag-accent">Security &amp; Ops</span></div>
+    <div class="rule"></div>
+    <div class="body" style="gap:38px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start">
+        <div>
+          <p class="lbl">수행 업무</p>
+          <ul class="bl">
+            <li>감사와 준법감시 업무를 지원하는 디지털감사 시스템을 운영하며, 현업 요청과 운영 이슈의 원인 및 영향 범위를 분석</li>
+            <li>FDS 고도화 협의에 참여해 변경 대상 업무와 시스템 영향도, 연계 범위를 검토</li>
+            <li>차세대 전환 과정에서 DB 컬럼 변경에 따른 데이터 흐름과 SQL, 배치, ETL 처리 구조의 영향 범위를 점검</li>
+            <li>미들웨어 업그레이드와 DRM 정책 등 운영 환경의 권한, 보안, 변경관리 사항 확인</li>
+          </ul>
+          <div class="band" style="margin-top:30px">
+            <span class="tag tag-neutral">Java</span><span class="tag tag-neutral">SQL</span><span class="tag tag-neutral">Oracle</span><span class="tag tag-neutral">Tibero</span><span class="tag tag-neutral">ETL</span><span class="tag tag-neutral">Batch</span><span class="tag tag-neutral">FDS</span><span class="tag tag-neutral">DRM</span>
+          </div>
+        </div>
+        <div>
+          <p class="lbl">업무 영역</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+            <div class="bp" style="padding:20px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <h3 style="font-size:24px">디지털감사 운영</h3>
+            </div>
+            <div class="bp" style="padding:20px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <h3 style="font-size:24px">FDS 고도화 협의</h3>
+            </div>
+            <div class="bp" style="padding:20px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <h3 style="font-size:24px">차세대 전환 영향도 분석</h3>
+            </div>
+          </div>
+          <div class="node hi" style="margin-top:20px;font-size:var(--t-small);letter-spacing:0.04em">변경 전 데이터와 연계 시스템의 영향 범위까지 검토</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="16" data-label="피어테크" data-speaker-notes="팀 리딩과 개발 생산성 개선이 핵심. 수치는 확인된 것만 말한다.">
+    <p class="kick">피어테크 GDAC</p>
+    <h2 class="title">GDAC 디지털 자산 거래 플랫폼</h2>
+    <p class="pmeta">피어테크 | Frontend Team Lead | 2023.03~2023.07</p>
+    <div class="utags"><span class="tag tag-accent">Frontend</span><span class="tag tag-accent">Leadership</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 700px;gap:52px;align-items:start">
+      <div>
+        <p class="lbl">구현</p>
+        <ul class="bl tight">
+          <li>React와 TypeScript 기반 가상자산 거래 화면, DeFi 기능, DEX용 TradingView 차트 개발</li>
+          <li>본인인증 OCR 연계와 스테이킹 기능 개발</li>
+          <li>Swagger와 OpenAPI Generator를 이용해 Client API 라이브러리를 구성하고 백엔드 API 연계 방식을 표준화</li>
+          <li>Storybook과 Preview 환경을 구성해 QC 확인 흐름 지원</li>
+        </ul>
+        <p class="lbl" style="margin-top:28px">팀 리딩</p>
+        <ul class="bl tight">
+          <li>업무 배분과 코드 리뷰, 페어 프로그래밍</li>
+          <li>배포 시 협업 부서 커뮤니케이션</li>
+        </ul>
+      </div>
+      <div>
+        <p class="lbl">개발 생산성</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <p class="lbl" style="margin:0">패키지 설치</p>
+            <p class="hd" style="font-size:34px;line-height:1.1;color:var(--color-accent-700);font-feature-settings:'tnum' 1">약 951초 → 30초</p>
+            <p class="note">Yarn Berry 적용</p>
+          </div>
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <p class="lbl" style="margin:0">빌드 시간</p>
+            <p class="hd" style="font-size:34px;line-height:1.1;color:var(--color-accent-700);font-feature-settings:'tnum' 1">약 60~70초 → 30~40초</p>
+            <p class="note">Webpack 설정 개선</p>
+          </div>
+        </div>
+        <div class="slot" style="height:330px;margin-top:26px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <image-slot id="IMAGE-GDAC-01" shape="rect" placeholder="거래와 차트 화면"></image-slot>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="17" data-label="엘리스그룹" data-speaker-notes="운영 자동화와 인증 기능이 핵심.">
+    <p class="kick">엘리스그룹 K-Digital Training</p>
+    <h2 class="title">LMS와 LXP 구현, 운영 자동화</h2>
+    <p class="pmeta">엘리스그룹 | Software Engineer | 2020.11~2022.09</p>
+    <div class="utags"><span class="tag tag-accent">Full-Stack</span><span class="tag tag-accent">Automation</span><span class="tag tag-accent">Frontend</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 700px;gap:52px;align-items:start">
+      <div>
+        <p class="lbl">구현</p>
+        <ul class="bl tight">
+          <li>수강생과 관리자, 기관 담당자용 LMS와 LXP 화면, 권한별 운영 대시보드 개발</li>
+          <li>SSO와 본인인증 기반 학습 인증 기능 개발</li>
+          <li>운영팀 인터뷰를 통해 반복적으로 처리하던 등록 업무를 확인하고 자동화 기능을 개발</li>
+          <li>PWA 사내 세미나와 React Server Components 데모를 통해 기술 내용을 팀에 공유</li>
+        </ul>
+        <p class="lbl" style="margin-top:28px">서비스 규모</p>
+        <ul class="bl tight">
+          <li>수강생 약 6만 명, 최대 동시 접속 약 2,700명 규모의 서비스 운영</li>
+        </ul>
+        <p class="lbl" style="margin-top:28px">사용자 구분</p>
+        <div class="flow" style="flex-direction:column;gap:8px">
+          <div class="node" style="text-align:left;justify-content:flex-start">수강생 — 과정 수강과 학습 인증</div>
+          <div class="node" style="text-align:left;justify-content:flex-start">관리자 — 과정과 차시 운영, 권한별 대시보드</div>
+          <div class="node" style="text-align:left;justify-content:flex-start">기관 담당자 — 사업 현황과 등록 관리</div>
+        </div>
+      </div>
+      <div>
+        <p class="lbl">개선 결과</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <p class="lbl" style="margin:0">반복 등록 업무</p>
+            <p class="hd" style="font-size:34px;line-height:1.1;color:var(--color-accent-700);font-feature-settings:'tnum' 1">월 40시간↑ → 약 20분</p>
+            <p class="note">운영 업무 자동화</p>
+          </div>
+          <div class="bp">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <p class="lbl" style="margin:0">빌드 시간</p>
+            <p class="hd" style="font-size:34px;line-height:1.1;color:var(--color-accent-700);font-feature-settings:'tnum' 1">81.61초 → 42.22초</p>
+            <p class="note">Node.js 14 → 16 전환</p>
+          </div>
+        </div>
+        <div class="slot duotone" style="height:330px;margin-top:26px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <img src="assets/elice-lms.jpeg" alt="엘리스 수강생 과정 화면" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">
+        </div>
+        <p class="slotnote">수강생 과정 화면</p>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="18" data-label="테이블매니저" data-speaker-notes="Angular 유지보수와 React 대시보드 기획 및 개발. 실시간 공지 팝업 개발로 아웃바운드 업무량 감소.">
+    <p class="kick">테이블매니저</p>
+    <h2 class="title">예약 관리 서비스와 Analytics Dashboard</h2>
+    <p class="pmeta">테이블매니저 | 매니저 / Frontend Developer | 2019.05~2020.10</p>
+    <div class="utags"><span class="tag tag-accent">Frontend</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 760px;gap:52px;align-items:start">
+      <div>
+        <p class="lbl">수행 업무</p>
+        <ul class="bl">
+          <li>Angular 기반 예약 관리 서비스 유지보수</li>
+          <li>React 기반 Analytics Dashboard 기획과 개발</li>
+          <li>NPS 수집과 분석 기능 개발</li>
+          <li>B2C 서비스 Angular 마이그레이션</li>
+          <li>실시간 공지 팝업을 개발해 고객지원팀의 아웃바운드 업무량을 약 30% 줄이는 데 기여</li>
+        </ul>
+      </div>
+      <div>
+        <p class="lbl">매장과 고객사 지표 대시보드</p>
+        <div class="slot" style="height:420px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <image-slot id="IMAGE-TM-01" shape="rect" placeholder="대시보드 화면"></image-slot>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="19" data-label="에피케이터와 신텍정보시스템" data-speaker-notes="인프라 운영과 비용 절감, 하이브리드 앱 개발. 공식 회사명을 유지한다.">
+    <p class="kick">에피케이터와 신텍정보시스템</p>
+    <h2 class="title">통합 백오피스와 Smart Test Drive</h2>
+    <div class="utags"><span class="tag tag-accent">Frontend</span><span class="tag tag-accent">Security &amp; Ops</span></div>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;gap:36px 52px;align-items:start">
+      <div>
+        <h3 class="hd" style="font-size:32px;margin:0">에피케이터 — 플레이팅 푸드테크 통합 백오피스</h3>
+        <p class="pmeta" style="margin-top:8px">Assistant | 2018.08~2019.03</p>
+        <ul class="bl tight" style="margin-top:22px">
+          <li>여러 프로젝트에 나뉘어 있던 사내 관리 기능을 React 기반 통합 Admin으로 재개발</li>
+          <li>AWS, Linux, Jenkins, Nginx, PM2 인프라 운영</li>
+          <li>Git-flow와 Semantic Versioning 도입, 코드 리뷰와 문서화</li>
+          <li>불필요한 EC2 정리와 RDS 최적화로 월 인프라 비용 약 31% 절감</li>
+          <li>월 약 850달러 추가 절감안 제안</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="hd" style="font-size:32px;margin:0">신텍정보시스템 — Smart Test Drive</h3>
+        <p class="pmeta" style="margin-top:8px">프리랜서 | 2018.03~2018.07 | 인벤티스 연계 프로젝트</p>
+        <ul class="bl tight" style="margin-top:22px">
+          <li>현대자동차 해외 딜러용 시승 관리 하이브리드 앱 개발</li>
+          <li>Angular, Ionic, Cordova 기반 구현</li>
+          <li>Bluetooth 차량 연계와 GPS 기반 위치, 거리, 속도 기록</li>
+          <li>해외 현지화와 실제 차량 테스트 대응</li>
+        </ul>
+        <div class="slot" style="height:170px;margin-top:22px;max-width:420px">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <image-slot id="IMAGE-STD-01" shape="rect" placeholder="시승 관리 앱 화면"></image-slot>
+        </div>
+      </div>
+      <div style="grid-column:1 / -1">
+        <div style="height:1px;background:var(--color-divider);margin-bottom:18px"></div>
+        <p class="lbl">그 외 초기 경험</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px 46px">
+          <div><span class="note muted">개발 참여</span><p class="note" style="margin:4px 0 0">세탁특공대 프론트엔드, 서울대학교 의과대학 납품용 트라우마 치료 Android 앱, 드론 비행 가이드 Android 앱</p></div>
+          <div><span class="note muted">교육과 강의, 집필</span><p class="note" style="margin:4px 0 0">스톤아이에서 개발 인턴과 교육 업무를 경험했고, 드론, Arduino, C 강의와 교재 집필에 참여</p></div>
+          <div><span class="note muted">기획과 창업</span><p class="note" style="margin:4px 0 0">아이온커뮤니케이션즈에서 서비스 기획 인턴을 경험했고, 예비창업과 창업 인턴 프로그램에 참여</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+  <section class="slide" data-screen-label="20" data-label="학력과 자격, 수상" data-speaker-notes="학력, 자격, 수상 4건과 교육, 병역. 마지막에 연락처를 남긴다.">
+    <p class="kick">Education | Certification | Awards</p>
+    <h2 class="title">학력과 자격, 수상</h2>
+    <div class="rule"></div>
+    <div class="body" style="display:grid;grid-template-columns:1fr 620px;gap:56px;align-items:start">
+      <div>
+        <p class="lbl">수상</p>
+        <table class="table">
+          <thead><tr><th style="width:150px">일자</th><th style="width:330px">수상</th><th>주제</th></tr></thead>
+          <tbody>
+            <tr><td class="muted">2017.10</td><td>대상(미래창조과학부 장관상)</td><td>글로벌 이노베이터 페스타 강원, 충전 시간에도 작동 가능한 방범 드론</td></tr>
+            <tr><td class="muted">2017.10</td><td>ITEX 국제 발명대회 은상, 이노비즈협회장상</td><td>어린이를 위한 교육용 알고리즘 장난감 블록</td></tr>
+            <tr><td class="muted">2015.09</td><td>서울창조경제혁신센터 대상</td><td>IoT 해커톤, 자율주행 스마트 안전 삼각대</td></tr>
+            <tr><td class="muted">2014.09</td><td>창업진흥원 우수상</td><td>창업인턴 창업교육, 음성인식 Bluetooth 제어 공기청정기</td></tr>
+          </tbody>
+        </table>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px">
+          <div class="slot" style="height:200px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <image-slot id="IMAGE-AWARD-01" shape="rect" placeholder="상장"></image-slot>
+          </div>
+          <div class="slot" style="height:200px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <image-slot id="IMAGE-AWARD-02" shape="rect" placeholder="상장"></image-slot>
+          </div>
+          <div class="slot" style="height:200px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <image-slot id="IMAGE-AWARD-03" shape="rect" placeholder="상장"></image-slot>
+          </div>
+        </div>
+        <p class="slotnote">상장 스캔</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">학력</p>
+          <p class="small">한국공학대학교(구 한국산업기술대학교) 컴퓨터공학 학사<br>2012.03~2019.08 졸업</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">자격</p>
+          <p class="small">정보처리기사, 한국산업인력공단<br>2019.08</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">교육</p>
+          <p class="small">T아카데미(SK Planet) Android 전문가 과정 (2016.10~2016.12), 기획 전문가 과정 (2016.04~2016.05)</p>
+        </div>
+        <div class="bp">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <p class="lbl" style="margin:0">병역</p>
+          <p class="small">산업기능요원 복무 후 소집해제<br>2019.10~2022.08</p>
+        </div>
+        <div style="height:1px;background:var(--color-divider);margin-top:6px"></div>
+        <p class="note muted" style="line-height:1.6;margin:0">gta2v@naver.com | 010-2992-5586 | github.com/woosuk-oh</p>
+      </div>
+    </div>
+    <div class="foot"></div>
+  </section>
+
+
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;pageFurniture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;showImageSlots&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;cleanSlotHint&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;registrationMarks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const flags = [];
+    if (this.props.pageFurniture === false) flags.push('no-furniture');
+    if (this.props.showImageSlots === false) flags.push('no-slots');
+    if (this.props.registrationMarks === false) flags.push('no-marks');
+    if (this.props.cleanSlotHint === true) flags.push('clean-slots');
+    return { flags: flags.join(' ') };
+  }
+}
+</script>
+</body>
+</html>
