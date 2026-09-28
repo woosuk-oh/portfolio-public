@@ -3,17 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+
+
 <title>오우석 포트폴리오 v0.3 — Editorial, 2026.09</title>
 <link rel="stylesheet" href="_ds/industry-00f58640-f8ed-4eac-bcb6-d5166c27a7f8/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=Barlow:wght@400;500&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
-<script src="./ds-base.js"></script>
+
 <script src="./image-slot.js"></script>
 <style>
 /* Deck scaffolding only — every color, rule and font comes from the Industry tokens.
@@ -164,8 +161,49 @@ deck-stage {
   .bp { break-inside: avoid; }
 }
 </style>
-</helmet>
-<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" data-flags="{{ flags }}" hint-size="100%,100%" data-uneditable="">
+<style id="static-viewer-fit">
+html, body { margin: 0; min-height: 100%; }
+body { background: #e9e8e2; padding: 28px 0; overflow-x: hidden; }
+deck-stage { display: block; width: 100%; }
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  margin: 0;
+  left: calc((100vw - 1920px) / 2);
+  transform-origin: top center;
+  box-shadow: 0 8px 28px rgba(32,43,45,.14);
+}
+@media print {
+  @page { size: landscape; margin: 0; }
+  body { padding: 0; background: #fff; overflow: visible; }
+  .slide {
+    left: 0 !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-shadow: none;
+    break-after: page;
+  }
+  .slide:last-child { break-after: auto; }
+}
+</style>
+<script>
+(() => {
+  const fit = () => {
+    const scale = Math.min(1, document.documentElement.clientWidth / 1920);
+    document.querySelectorAll('deck-stage > .slide').forEach((slide) => {
+      slide.style.transform = 'scale(' + scale + ')';
+      slide.style.marginBottom = (24 - 1080 * (1 - scale)) + 'px';
+    });
+  };
+  fit();
+  window.addEventListener('resize', fit, { passive: true });
+})();
+</script>
+</head>
+<body>
+<deck-stage>
 
   <section class="slide cover" data-screen-label="01" data-label="표지" data-speaker-notes="증권, 회계, 가상자산, 에듀테크에서 제품 기획부터 운영까지 경험한 개발자. 금융 AI Product / AI Platform 포지션 지향.">
     <p class="kick" style="position:absolute;top:70px;right:var(--px);margin:0">Portfolio v0.3 · Editorial direction · 2026.09</p>
@@ -1138,19 +1176,8 @@ deck-stage {
   </section>
 
 
-</x-import>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;pageFurniture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;showImageSlots&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;cleanSlotHint&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;},&quot;registrationMarks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;덱 설정&quot;}}">
-class Component extends DCLogic {
-  renderVals() {
-    const flags = [];
-    if (this.props.pageFurniture === false) flags.push('no-furniture');
-    if (this.props.showImageSlots === false) flags.push('no-slots');
-    if (this.props.registrationMarks === false) flags.push('no-marks');
-    if (this.props.cleanSlotHint === true) flags.push('clean-slots');
-    return { flags: flags.join(' ') };
-  }
-}
-</script>
+</deck-stage>
+
+<script src="./image-slot.js"></script>
 </body>
 </html>
