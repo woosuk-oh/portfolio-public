@@ -188,19 +188,7 @@ deck-stage { display: block; width: 100%; }
   .slide:last-child { break-after: auto; }
 }
 </style>
-<script>
-(() => {
-  const fit = () => {
-    const scale = Math.min(1, document.documentElement.clientWidth / 1920);
-    document.querySelectorAll('deck-stage > .slide').forEach((slide) => {
-      slide.style.transform = 'scale(' + scale + ')';
-      slide.style.marginBottom = (24 - 1080 * (1 - scale)) + 'px';
-    });
-  };
-  fit();
-  window.addEventListener('resize', fit, { passive: true });
-})();
-</script>
+
 </head>
 <body>
 <deck-stage>
@@ -1179,5 +1167,18 @@ deck-stage { display: block; width: 100%; }
 </deck-stage>
 
 <script src="./image-slot.js"></script>
+<script>
+(() => {
+  const fit = () => {
+    const scale = Math.min(1, document.documentElement.clientWidth / 1920);
+    document.querySelectorAll('deck-stage > .slide').forEach((slide) => {
+      slide.style.transform = 'scale(' + scale + ')';
+      slide.style.marginBottom = (24 - 1080 * (1 - scale)) + 'px';
+    });
+  };
+  fit();
+  window.addEventListener('resize', fit, { passive: true });
+})();
+</script>
 </body>
 </html>
